@@ -1,65 +1,40 @@
 import { errorMessageRender } from "../render.js";
 
-// const container = document.querySelector('.registration_container'); ///??
+const validationRules = {
+    firstName: { required: true, message: "First Name is empty" },
+    lastName: { required: true, message: "Last Name is empty" },
+    email: { required: true, regex: /\S+@\S+\.\S+/, message: "Email is not valid" },
+    username: { required: true, message: "Username is empty" },
+    password: { required: true, message: "Password is empty" },
+    passwordConfirmation: { required: true, match: "password", message: "Passwords do not match" }
+};
 
-// export const validationCheck = (firstName,lastName,email,user,password,confirmationPassword) => {
+export const validationCheck = (fields) => {
+    const errors = [];
 
-//     if(firstName.trim() === ''){
-//         let message = 'First Name is empty'
-//         errorMessageRender(message);
-//     }
-//     else if (lastName.trim() === '') {
-//         let message = 'Last name is empty';
-//         errorMessageRender(message);
-//         return;
-//     }else if (email.trim() === '') {
-//         let message = 'Email is empty';
-//         errorMessageRender(message);
-//         return;
-//     } else if(user.trim()===''){
-//         errorMessageRender('User is empty');
-//     } else if (password.trim() === '') {
-//         let message = 'Password is empty';
-//         errorMessageRender(message);
-//         return;
-//     }
-//     // else if (password.length<8){
-//     //     errorMessageRender('Password min length 8 characters');
+    for (const [fieldName, value] of Object.entries(fields)) {
+        const rule = validationRules[fieldName];
 
-//     // }
-//     else if (password.trim() !== confirmationPassword) {
-//         let message = 'Passwords do not match';
-//         errorMessageRender(message);
-//         return;
-//     }
+        if (!rule) continue; 
 
-// }
+        if (rule.required && !value) {
+            errors.push({ field: fieldName, message: rule.message });
+        }
 
-export const validationCheck = (firstName, lastName, email, user, password, confirmationPassword) => {
-    if (firstName.trim() === '') {
-        errorMessageRender("First Name is empty");
-        return false;
-    }
-    if (lastName.trim() === '') {
-        errorMessageRender("Last Name is empty");
-        return false;
-    }
-    if (email.trim() === '') {
-        errorMessageRender("Email is empty");
-        return false;
-    }
-    if (user.trim() === '') {
-        errorMessageRender("Username is empty");
-        return false;
-    }
-    if (password.trim() === '') {
-        errorMessageRender("Password is empty");
-        return false;
-    }
-    if (password.trim() !== confirmationPassword.trim()) {
-        errorMessageRender("Passwords do not match");
-        return false;
+        if (rule.regex && value && !rule.regex.test(value)) {
+            errors.push({ field: fieldName, message: rule.message });
+        }
+
+        if (rule.match && value !== fields[rule.match]) {
+            errors.push({ field: fieldName, message: rule.message });
+        }
     }
 
-    return true; // All validations passed
+    if (errors.length > 0) {
+        errors.forEach(error => {
+            errorMessageRender(error.message);
+        });
+        return false;
+    }
+    return true;
 };
