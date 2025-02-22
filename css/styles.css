@@ -1,0 +1,129 @@
+.wrapper {
+    width: 1174px;
+    margin: 0 auto;
+}
+
+body {
+    background: url(../images/registration\ page\ background.jpg);
+    background-size: cover;
+}
+
+.registration_Main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input{
+    background-color: lightgray;
+}
+
+.registration_container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+    width: 300px;
+    top: 15%;
+    left: 50%;
+    transform: translateY(-50%);
+    transform: translateX(-50%);
+    /* transform: translate(-50%, -50%); */
+    border-radius: 20px;
+    border: rgb(19, 149, 224);
+    border-style: ridge;
+    /* background-image: url(../images/registration\ page\ background.jpg); */
+}
+
+.header {
+    padding-bottom: 5%;
+}
+
+.form_style {
+    display: flex;
+    flex-direction: column;
+    border-radius: 50px;
+    border-color: black;
+    width: 150px;
+}
+
+.form_style input {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    height: 25px;
+    border: peru;
+}
+
+.user {
+    display: flex;
+}
+
+h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: large;
+    color: rgb(187, 153, 59);
+}
+
+.btn {
+    text-decoration: none;
+    border: 1px solid rgb(14, 171, 219);
+    position: relative;
+    overflow: hidden;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    background: rgb(146, 150, 153);
+    /* color: #515355; */
+    color: #515355;
+
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    box-shadow: 1px 1px 25px 10px rgba(146, 248, 235, 0.4);
+}
+
+.btn:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient( 120deg, transparent, rgba(190, 236, 234, 0.4), transparent);
+    transition: all 650ms;
+}
+
+;
+.btn:hover:before {
+    left: 100%;
+}
+
+.btn:hover:before {
+    left: 100%;
+}
+
+/* .login_box{
+    width: 300px;
+} */
+
+.error_Message_text {
+    text-align: center;
+    height: 20px;
+    width: 100%;
+    color: white;
+    border-radius: 20px;
+    border: red;
+    border-style: ridge;
+    background-color: red;
+}
+
+.err_msg_box {
+    position: absolute;
+    height: 20px;
+    width: 150px;
+    top: 30%;
+    left: 50%;
+    transform: translateY(-50%);
+    transform: translateX(-50%);
+}
